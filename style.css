@@ -1,0 +1,54 @@
+body {
+    text-align: center;
+    background-color: bisque;
+
+}
+
+video {
+    border: 2px solid blue;
+    border-radius: 20px;
+    width: 0px;
+    height: 0px;
+}
+
+table {
+    width: auto;
+    margin: auto;
+}
+
+tr,
+td {
+    border: 0px;
+    text-align: center;
+}
+
+.AI {
+    font-size: medium;
+    border: 2px solid black;
+    background-color: antiquewhite;
+}
+
+:hover.AI {
+    font-size: medium;
+    border: 2px solid rgb(4, 0, 255);
+    background-color: rgb(252, 255, 178);
+}
+
+.DIV {
+    background-color: rgba(240, 248, 255, 0.473);
+    border: 3px solid black;
+    border-radius: 15px;
+}
+
+:hover.DIV {
+    background-color: rgba(238, 251, 190, 0.515);
+    border: 1px solid rgba(0, 0, 0, 0.561);
+    border-radius: 25px;
+}
+
+.as {
+    font-size: medium;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+    color: black;
+}
