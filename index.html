@@ -13,13 +13,12 @@
 <body>
     <div class="Div">
         <nav class="as"> Expo 3.0 </nav>
-        <nav class="as"> AI Face person detection </nav>
+        <br>
+        <nav class="as"> Object detection and identification use by AI </nav>
     </div>
-
-
+    <br>
     <div>
         <h2 id="loadingText">Loading...</h2>
-        <!-- video with size of 0px because of chrome -->
         <video playsinline autoplay muted controls="true" id="video"></video>
         <br><br>
         <canvas id="c1"></canvas>
@@ -33,10 +32,10 @@
                 <td>
                     <div class="switch">
                         <label>
-                            Off
+                            <p class="AI-a">Off</p>
                             <input type="checkbox" id="ai" disabled>
                             <span class="lever"></span>
-                            On
+                            <p class="AI-a">On</p>
                         </label>
                     </div>
                 </td>
@@ -53,17 +52,15 @@
     </div>
     <script>
         var modelIsLoaded = false;
-
-        // Create a ObjectDetector method
         const objectDetector = ml5.objectDetector('cocossd', {}, modelLoaded);
-
-        // When the model is loaded
         function modelLoaded() {
             console.log("Model Loaded!");
             modelIsLoaded = true;
         }
     </script>
     <script src="video.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 
