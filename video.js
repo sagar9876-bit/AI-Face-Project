@@ -96,7 +96,7 @@ function ai() {
             ctx1.fillStyle = "red";
             ctx1.fillText(element.label + " - " + (element.confidence * 100).toFixed(2) + "%", element.x + 10, element.y + 15);
             ctx1.beginPath();
-            ctx1.strokeStyle = "red";
+            ctx1.strokeStyle = "Green";
             ctx1.rect(element.x, element.y, element.width, element.height);
             ctx1.stroke();
             console.log(element.label);
