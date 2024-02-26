@@ -1,54 +1,71 @@
 body {
     text-align: center;
-    background-color: rgb(255, 255, 255);
-
+    background-color: #f5fcc0;
 }
 
 video {
-    border: 2px solid blue;
+    border: 2px solid #000000;
     border-radius: 20px;
-    width: 0px;
-    height: 0px;
+    width: 300px;
+    height: auto;
 }
 
 table {
-    width: auto;
+    width: 80%;
     margin: auto;
 }
 
 tr,
 td {
-    border: 0px;
+    border: 1px solid #ddd;
+    padding: 10px;
     text-align: center;
 }
 
 .AI {
-    font-size: medium;
-    border: 2px solid black;
-    background-color: antiquewhite;
+    font-size: 18px;
+    padding: 10px;
+    display: inline-block;
+    transition: all 0.3s ease;
+
 }
 
-:hover.AI {
-    font-size: medium;
-    border: 2px solid rgb(4, 0, 255);
-    background-color: rgb(252, 255, 178);
+.AI:hover {
+    border-color: #008080;
+    background-color: #ffdab9;
+    transform: scale(1.05);
 }
 
 .DIV {
-    background-color: rgba(240, 248, 255, 0.473);
-    border: 3px solid black;
+    background-color: rgba(0, 0, 0, 0.984);
+    border: 3px solid #fd0000;
     border-radius: 15px;
+    padding: 20px;
+    display: inline-block;
+    transition: all 0.3s ease;
 }
 
-:hover.DIV {
-    background-color: rgba(238, 251, 190, 0.515);
-    border: 1px solid rgba(0, 0, 0, 0.561);
-    border-radius: 25px;
+.DIV:hover {
+    background-color: rgba(173, 216, 230, 0.6);
+    border-color: #88a6ff;
+    transform: translateY(-5px);
 }
 
 .as {
-    font-size: medium;
-    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
     font-style: italic;
-    color: black;
+    color: #ffffff;
+}
+
+.AI-a {
+    font-size: small;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fd0000;
+}
+
+:hover.AI-a {
+    font-size: small;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #01ff38;
 }
