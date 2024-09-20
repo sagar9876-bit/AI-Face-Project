@@ -1,5 +1,5 @@
-document.getElementById("ai").addEventListener("change", toggleAi)
-document.getElementById("fps").addEventListener("input", changeFps)
+document.getElementById("ai").addEventListener("change", toggleAi);
+document.getElementById("fps").addEventListener("input", changeFps);
 
 const video = document.getElementById("video");
 const c1 = document.getElementById('c1');
@@ -9,7 +9,7 @@ var aiEnabled = false;
 var fps = 16;
 
 /* Setting up the constraint */
-var facingMode = "environment"; // Can be 'user' or 'environment' to access back or front camera (NEAT!)
+var facingMode = "environment"; // Can be 'user' or 'environment' to access back or front camera
 var constraints = {
     audio: false,
     video: {
@@ -21,35 +21,36 @@ var constraints = {
 camera();
 function camera() {
     if (!cameraAvailable) {
-        console.log("camera")
         navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
             cameraAvailable = true;
             video.srcObject = stream;
         }).catch(function (err) {
             cameraAvailable = false;
-            if (modelIsLoaded) {
-                if (err.name === "NotAllowedError") {
-                    document.getElementById("loadingText").innerText = "Waiting for camera permission";
-                }
+            if (err.name === "NotAllowedError") {
+                document.getElementById("loadingText").innerText = "Camera permission required. Please allow access.";
+            } else {
+                document.getElementById("loadingText").innerText = "Error accessing the camera.";
             }
-            setTimeout(camera, 1000);
+            setTimeout(camera, 1000); // Retry after 1 second
         });
     }
 }
 
 window.onload = function () {
-    timerCallback();
+    changeFps(); // Initialize FPS
+    timerCallback(); // Start the loop
 }
 
 function timerCallback() {
     if (isReady()) {
         setResolution();
-        ctx1.drawImage(video, 0, 0, c1.width, c1.height);
+        ctx1.clearRect(0, 0, c1.width, c1.height); // Clear canvas
+        ctx1.drawImage(video, 0, 0, c1.width, c1.height); // Draw video on canvas
         if (aiEnabled) {
-            ai();
+            ai(); // Run AI if enabled
         }
     }
-    setTimeout(timerCallback, fps);
+    setTimeout(timerCallback, fps); // Adjust the loop speed based on FPS
 }
 
 function isReady() {
@@ -76,7 +77,7 @@ function setResolution() {
         c1.width = video.videoWidth;
         c1.height = video.videoHeight;
     }
-};
+}
 
 function toggleAi() {
     aiEnabled = document.getElementById("ai").checked;
@@ -87,19 +88,24 @@ function changeFps() {
 }
 
 function ai() {
-    // Detect objects in the image element
-    objectDetector.detect(c1, (err, results) => {
+    // Detect objects in the video element
+    objectDetector.detect(video, (err, results) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
         console.log(results); // Will output bounding boxes of detected objects
-        for (let index = 0; index < results.length; index++) {
-            const element = results[index];
+        results.forEach((element) => {
             ctx1.font = "15px Arial";
             ctx1.fillStyle = "red";
-            ctx1.fillText(element.label + " - " + (element.confidence * 100).toFixed(2) + "%", element.x + 10, element.y + 15);
+            ctx1.fillText(
+                element.label + " - " + (element.confidence * 100).toFixed(2) + "%", 
+                element.bbox[0] + 10, element.bbox[1] + 15
+            );
             ctx1.beginPath();
-            ctx1.strokeStyle = "Green";
-            ctx1.rect(element.x, element.y, element.width, element.height);
+            ctx1.strokeStyle = "green";
+            ctx1.rect(element.bbox[0], element.bbox[1], element.bbox[2], element.bbox[3]);
             ctx1.stroke();
-            console.log(element.label);
-        }
+        });
     });
 }
